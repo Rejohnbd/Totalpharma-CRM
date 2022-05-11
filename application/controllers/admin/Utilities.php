@@ -82,6 +82,9 @@ class Utilities extends AdminController
         $data['title']                = _l('calendar');
         add_calendar_assets();
 
+        $data['staff_members'] = $this->staff_model->get('', ['active' => 1]);
+        $data['appointment_types'] = $this->db->get('tblappointly_appointment_types')->result_array();
+    
         $this->load->view('admin/utilities/calendar', $data);
     }
 
@@ -370,4 +373,13 @@ class Utilities extends AdminController
         $data['title'] = _l('bulk_pdf_exporter');
         $this->load->view('admin/utilities/bulk_pdf_exporter', $data);
     }
+    
 }
+
+/**
+ * This controller are modified.
+ * Modifed Method calendar()
+ * This method strat form line no 60
+ * In this method modified line no: 85, 86
+ * 
+* /
