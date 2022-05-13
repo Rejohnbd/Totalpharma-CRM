@@ -48,5 +48,5 @@
 	 * Old file is exist named calender_old.php
 	 * Line no: 25 to 29 and 36 to 40 added here.
 	 * This lines are not mendatory. You can rearragne this. 
-	 * /
+	 */
 ?>

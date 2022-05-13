@@ -18,11 +18,9 @@
       </div>
 
       <div class="modal-body">
-        <div class="row">
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="newEvent">
               <?php echo form_open('admin/utilities/calendar', array('id' => 'calendar-event-form')); ?>
-              <div class="col-md-12">
                 <?php echo render_input('title', 'utility_calendar_new_event_placeholder'); ?>
                 <?php echo render_textarea('description', 'event_description', '', array('rows' => 5)); ?>
                 <?php echo render_datetime_input('start', 'utility_calendar_new_event_start_date', '', ['data-step' => 30]); ?>
@@ -76,17 +74,17 @@
                   <input type="checkbox" name="public" id="public">
                   <label for="public"><?php echo _l('utility_calendar_new_event_make_public'); ?></label>
                 </div>
-              </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo _l('close'); ?></button>
                 <button type="submit" class="btn btn-info"><?php echo _l('submit'); ?></button>
               </div>
               <?php echo form_close(); ?>
             </div>
+            
             <div role="tabpanel" class="tab-pane" id="newAppointment">
 
               <?php echo form_open('appointly/appointments/create', ['id' => 'appointment-form']); ?>
-              <div class="col-md-12">
+              <!-- <div class="col-md-12"> -->
                 <div class="checkbox pull-right mrtopmin5" id="showOutlookCheckbox">
                   <input type="checkbox" id="outlook-checkbox">
                   <label data-toggle="tooltip" for="outlook-checkbox" title="<?= _l('appointment_add_to_outlook'); ?>" for="outlook">
@@ -237,7 +235,7 @@
                     <textarea name="notes" id="" cols="30" rows="10"></textarea>
                   </div>
                 </div>
-              </div>
+              <!-- </div> -->
               <div class="modal-footer">
                 <button type="button" class="btn btn-xs btn-default close_btn" data-dismiss="modal"><?php echo _l('close'); ?></button>
                 <button type="submit" class="btn btn-xs btn-info"><?php echo _l('submit'); ?></button>
@@ -245,7 +243,6 @@
               <?php echo form_close(); ?>
             </div>
           </div>
-        </div>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
