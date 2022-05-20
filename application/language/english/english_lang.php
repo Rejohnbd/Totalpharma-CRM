@@ -3846,3 +3846,6 @@ $lang['edit_invoice']                      		= 'Edit Invoice';
 $lang['edit_credit_note']						= 'Edit Credit Note';
 $lang['edit_subscription']						= 'Edit Subscription';
 $lang['edit_contract']             				= 'Edit Contract';
+$lang['als_tasks_temp']                 		= 'Tasks Template';
+$lang['new_task_temp']                          = 'New Task Template';
+$lang['task_template_lowercase']                = 'task template';

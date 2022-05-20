@@ -142,13 +142,38 @@ function app_init_admin_sidebar_menu_items()
         'badge'    => [],
     ]);
 
+    // Added by Rejohn for new navbar
+
+    // $CI->app_menu->add_sidebar_menu_item('tasks', [
+    //     'name'     => _l('als_tasks'),
+    //     'href'     => admin_url('tasks'),
+    //     'icon'     => 'fa fa-tasks',
+    //     'position' => 35,
+    //     'badge'    => [],
+    // ]);
+
     $CI->app_menu->add_sidebar_menu_item('tasks', [
+        'collapse' => true,
         'name'     => _l('als_tasks'),
-        'href'     => admin_url('tasks'),
-        'icon'     => 'fa fa-tasks',
         'position' => 35,
+        'icon'     => 'fa fa-tasks',
         'badge'    => [],
     ]);
+    $CI->app_menu->add_sidebar_children_item('tasks', [
+            'slug'     => 'tasks',
+            'name'     => _l('als_tasks'),
+            'href'     => admin_url('tasks'),
+            'position' => 5,
+            'badge'    => []
+    ]);
+    $CI->app_menu->add_sidebar_children_item('tasks', [
+        'slug'     => 'task-template',
+        'name'     => _l('als_tasks_temp'),
+        'href'     => admin_url('tasks_template'),
+        'position' => 6,
+        'badge'    => [],
+    ]);
+    //end for new navbar
 
     if ((!is_staff_member() && get_option('access_tickets_to_none_staff_members') == 1) || is_staff_member()) {
         $enable_badge = get_option('enable_support_menu_badges');

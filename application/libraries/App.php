@@ -231,7 +231,7 @@ class App
                 $path = $myPrefixedPath;
             }
         }
-
+        
         include_once($path);
 
         echo json_encode($output);

@@ -123,10 +123,10 @@ $('body').on('change', '#appointment_select_type', function(e) {
 /** 
  * Clear data after modals are closed
  */
-$('.modal').on('hidden.bs.modal', function(e) {
-    $('.xdsoft_datetimepicker').remove();
-    $(this).removeData();
-});
+// $('.modal').on('hidden.bs.modal', function(e) {
+//     $('.xdsoft_datetimepicker').remove();
+//     $(this).removeData();
+// });
 
 /** 
  * Email and SMS Reminders checkboxes
