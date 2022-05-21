@@ -12,18 +12,18 @@ class Tasks_template extends AdminController
         parent::__construct();
         // $this->load->model('projects_model');
         $this->load->model('tasks_template_model');
-        $this->load->helper("url");
     }
 
     
     public function index()
     {
-        $this->list_tasks($id);
+        $this->list_tasks();
     }
     
     // List all tasks
     public function list_tasks($id = '')
     {
+
         $data['bodyclass']     = 'tasks-template-page';
 
         $data['title'] = _l('als_tasks_temp');
@@ -34,6 +34,8 @@ class Tasks_template extends AdminController
     // Add new task or update existing
     public function task($id = '')
     {
+        // print_r($this->input->post());
+        // die();
         // if (!has_permission('tasks', '', 'edit') && !has_permission('tasks', '', 'create')) {
         //     ajax_access_denied();
         // }
@@ -87,8 +89,11 @@ class Tasks_template extends AdminController
                     'id'      => $id,
                 ]);
             }
+
             die;
         }
+
+        $data['checklistTemplates'] = $this->tasks_template_model->get_checklist_templates();
         
         if ($id == '') {
             $title = _l('add_new', _l('task_template_lowercase'));
@@ -100,19 +105,20 @@ class Tasks_template extends AdminController
         $data['members'] = $this->staff_model->get();
         $data['id']      = $id;
         $data['title']   = $title;
+     
         $this->load->view('admin/tasks_template/task', $data);
     }
 
 
     
-    // public function table()
-    // {
-    //     $output = $this->db->get(db_prefix() . 'tasks_template')->result_array();
+    public function table()
+    {
+        // $output = $this->db->get(db_prefix() . 'tasks_template')->result_array();
 
-    //     // $this->app->get_table_data('tasks_template');
-    //     echo json_encode($output);
-    //     die;
-    // }
+        $this->app->get_table_data('tasks_template');
+        echo json_encode($output);
+        die;
+    }
     
     // Delete task from database
     public function delete_task($id)

@@ -101,4 +101,11 @@ class Tasks_template_model extends App_Model
 
         return false;
     }
+
+    public function get_checklist_templates()
+    {
+        $this->db->order_by('description', 'asc');
+
+        return $this->db->get(db_prefix() . 'tasks_checklist_templates')->result_array();
+    }
 }

@@ -19,7 +19,7 @@
                   <hr class="hr-panel-heading hr-10" />
                   <div class="clearfix"></div>
                   <div class="table-responsive">
-                      <table class="table table-tasks dataTable no-footer">
+                      <table class="table">
                           <thead>
                               <tr role="row">
                                   <th>#</th>
@@ -122,33 +122,6 @@ function edit_task_template(task_id) {
     });
 }
 
-
-// table_tasks = $('.table-tasks');
-//     if (table_tasks.length) {
-//         var TasksServerParams = {},
-//             Tasks_Filters;
-//         Tasks_Filters = $('._hidden_inputs._filters._tasks_filters input');
-//         $.each(Tasks_Filters, function () {
-//             TasksServerParams[$(this).attr('name')] = '[name="' + $(this).attr('name') + '"]';
-//         });
-
-//         // Tasks not sortable
-//         var tasksTableNotSortable = [0]; // bulk actions
-//         var tasksTableURL = admin_url + 'tasks_template/table';
-//         console.log()
-
-//         if ($("body").hasClass('tasks-template-page')) {
-//             tasksTableURL += '?bulk_actions=true';
-//         }
-
-//         _table_api = initDataTable(table_tasks, tasksTableURL, tasksTableNotSortable, tasksTableNotSortable, TasksServerParams, [table_tasks.find('th.duedate').index(), 'asc']);
-
-//         if (_table_api && $("body").hasClass('dashboard')) {
-//             _table_api.column(5).visible(false, false)
-//                 .column(6).visible(false, false)
-//                 .columns.adjust();
-//         }
-//     }
 </script>
 </body>
 </html>
