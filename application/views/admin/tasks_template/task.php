@@ -1,6 +1,5 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 <?php echo form_open_multipart(admin_url('tasks_template/task/'.$id),array('id'=>'task-form')); ?>
-
 <div class="modal fade<?php if(isset($task)){echo ' edit';} ?>" id="_task_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"<?php if($this->input->get('opened_from_lead_id')){echo 'data-lead-id='.$this->input->get('opened_from_lead_id'); } ?>>
 <div class="modal-dialog" role="document">
    <div class="modal-content">
@@ -28,22 +27,26 @@
                      </div>
                   </div>
                </div>
-               <?php if (!isset($task)) { ?>
+               
                <div class="row">
                   <div class="col-md-12">
                      <div class="form-group select-placeholder>">                     
                      <label for="assignees"><?php echo _l('task_single_assignees'); ?></label>
                      <select name="assignees[]" id="assignees" class="selectpicker" data-width="100%" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>" multiple data-live-search="true">
                      <?php foreach($members as $member){ ?>
+                        <?php if (isset($task)) { ?>
+                        <option value="<?php echo $member['staffid']; ?>" <?php if((get_option('new_task_auto_assign_current_member') == '1') && get_staff_user_id()  == $member['staffid']){echo 'selected'; }else if(in_array($member['staffid'], explode(',', $task->assigneed_ids) )){echo 'selected';} ?>>
+                           <?php echo $member['firstname'] . ' ' .  $member['lastname']; ?>
+                        </option>
+                        <?php }else{?>
                         <option value="<?php echo $member['staffid']; ?>" <?php if((get_option('new_task_auto_assign_current_member') == '1') && get_staff_user_id()  == $member['staffid']){echo 'selected'; } ?>>
                            <?php echo $member['firstname'] . ' ' .  $member['lastname']; ?>
                         </option>
-                        <?php } ?>
+                     <?php }} ?>
                      </select>
                      </div>
                   </div>
                </div>
-               <?php } ?>
                
                <div class="form-group checklist-templates-wrapper<?php if(count($checklistTemplates) == 0 || isset($task)){echo ' hide';}  ?>">
                   <label for="checklist_items"><?php echo _l('insert_checklist_templates'); ?></label>
@@ -58,8 +61,8 @@
                </div>
                <div class="form-group">
                   <div id="inputTagsWrapper">
-                     <label for="tags" class="control-label"><i class="fa fa-tag" aria-hidden="true"></i> <?php echo _l('tags'); ?></label>
-                     <input type="text" class="tagsinput" id="tags" name="tags" value="<?php echo (isset($task) ? prep_tags_input(get_tags_in($task->id,'task')) : ''); ?>" data-role="tagsinput">
+                     <label for="tags" class="control-label"><i class="fa fa-tag" aria-hidden="true"></i></label>
+                     <input type="text" class="tagsinput" id="tags" name="tags" value="<?php echo (isset($task) ? prep_tags_input(explode(',', $task->tags_ids)) : ''); ?>" data-role="tagsinput">
                   </div>
                </div>
                <?php $rel_id_custom_field = (isset($task) ? $task->id : false); ?>

@@ -23,19 +23,17 @@ class Tasks_template extends AdminController
     // List all tasks
     public function list_tasks($id = '')
     {
-
         $data['bodyclass']     = 'tasks-template-page';
-
         $data['title'] = _l('als_tasks_temp');
-        $data['task_templates'] = $this->db->get(db_prefix() . 'tasks_template')->result_array();
+        $data['task_templates'] = $this->tasks_template_model->get_task_templates();
+        $data['staff'] =  $this->tasks_template_model->get_staff_info();
         $this->load->view('admin/tasks_template/manage', $data);
     }
 
     // Add new task or update existing
     public function task($id = '')
     {
-        // print_r($this->input->post());
-        // die();
+      
         // if (!has_permission('tasks', '', 'edit') && !has_permission('tasks', '', 'create')) {
         //     ajax_access_denied();
         // }
@@ -100,6 +98,9 @@ class Tasks_template extends AdminController
         } else {
             $data['task'] = $this->tasks_template_model->get($id);
             $title = _l('edit', _l('task_template_lowercase')) . ' ' . $data['task']->name;
+            // print_r();
+            // die();
+            // $this->tasks_template_model->get_tasks_name_by_id($data['task']->tags_ids);
         }
         
         $data['members'] = $this->staff_model->get();

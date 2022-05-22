@@ -45,6 +45,7 @@
                                  </td>
                                  <td><?= $template['description'] ?></td>
                                  <td>
+                                    <?php if(!empty($template['tags_ids'])){ ?>
                                     <div class="tags-labels" style="white-space: inherit;">
                                        <?php  foreach(explode(',', $template['tags_ids']) as $key => $value){ ?>
                                           <span class="label label-tag tag-id-<?= $key ?>">
@@ -52,11 +53,37 @@
                                           </span>
                                        <?php } ?> 
                                     </div>
+                                    <?php } ?>
                                  </td>
-                                 <td>1, 2</td>
                                  <td>
-                                    <span style="color:#ff6f00" class="inline-block"></span>
-                                    <?= $template['priority'] ?>
+                                    <?php 
+                                    $staff_name = "";
+                                    foreach (explode(',', $template['assigneed_ids']) as $key => $value) {
+                                       foreach($staff as $stf){
+                                          if($value == $stf['id']){
+                                             $staff_name = $stf['name'];
+                                          }
+                                       }
+                                    ?>
+                                    <a href="<?= admin_url('profile/') . trim($value); ?>">
+                                      <img src="<?php echo base_url('assets/images/user-placeholder.jpg') ?>" data-toggle="tooltip" data-title="<?= $staff_name; ?>" class="staff-profile-image-small mright5" data-original-title="" title="<?= $staff_name; ?>">
+                                    </a>
+                                    <?php
+                                       }
+                                    ?>
+                                 </td>
+                                 <td>
+                                    <?php 
+                                       if($template['priority'] == 1){
+                                          echo '<span style="color:#777" class="inline-block">'._l('task_priority_low').'</span>';
+                                       }else if($template['priority'] == 2){
+                                          echo '<span style="color:#03a9f4" class="inline-block">'._l('task_priority_medium').'</span>';
+                                       }else if($template['priority'] == 3){
+                                          echo '<span style="color:#ff6f00" class="inline-block">'._l('task_priority_high').'</span>';
+                                       }else {
+                                          echo '<span style="color:#fc2d42" class="inline-block">'._l('task_priority_urgent').'</span>';
+                                       }
+                                    ?>
                                  </td>
                               </tr>
                            <?php } ?>

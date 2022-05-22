@@ -18,6 +18,27 @@ class Tasks_template_model extends App_Model
     // Get task by id
     // @param  mixed $id task id
     // @return object
+
+    public function get_task_templates()
+    {
+        return $this->db->get(db_prefix() . 'tasks_template')->result_array();
+    }
+
+    public function get_staff_info()
+    {
+        $staff = [];
+        $staffArray = $this->db->get(db_prefix() . 'staff')->result_array();
+        // foreach ($staffArray as $key => $value) {
+        //     $staff[$value['staffid']] = $value['firstname'] . ' ' . $value['lastname'];
+        // }
+        foreach ($staffArray as $key => $value) {
+            $staff[$key] = array(
+                'id'    => $value['staffid'],
+                'name'  => $value['firstname'] . ' ' . $value['lastname']
+            );
+        }
+        return $staff;
+    }
     
     public function get($id, $where = [])
     {
@@ -74,6 +95,10 @@ class Tasks_template_model extends App_Model
 
         $data['tags_ids'] = $data['tags'];
         unset($data['tags']);
+
+        $assignees = implode (", ", $data['assignees']);
+        unset($data['assignees']);
+        $data['assigneed_ids'] = $assignees;
         
         $this->db->where('id', $id);
         $this->db->update(db_prefix() . 'tasks_template', $data);
@@ -108,4 +133,14 @@ class Tasks_template_model extends App_Model
 
         return $this->db->get(db_prefix() . 'tasks_checklist_templates')->result_array();
     }
+
+    // public function get_tasks_name_by_id($id)
+    // {
+    //     $this->db->where('id', $id);
+    //     $tags = $this->db->get(db_prefix() . 'tags')->row();  
+    //     print_r($tags);
+    //     exit();
+    //     return $tags;
+    // }
+    
 }
