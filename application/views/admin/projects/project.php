@@ -209,7 +209,17 @@
                 </div>
                 <?php } ?>
                 <hr class="hr-panel-heading" />
-
+                <?php if(isset($task_templates)){?>
+                <p class="bold"><?= _l('als_tasks_temp') ?></p>
+                <div class="checkbox checkbox-success">
+                    <?php foreach ($task_templates as $key => $value) { ?>
+                    <input type="checkbox" name="task_template[]" value="<?= $value['id']; ?>">
+                    <label><?= $value['name']; ?></label>
+                    <br/>
+                    <?php } ?>
+                </div>
+                <?php } ?>
+                <hr class="hr-panel-heading" />
                 <?php if(is_email_template_active('assigned-to-project')){ ?>
                     <div class="checkbox checkbox-primary">
                      <input type="checkbox" name="send_created_email" id="send_created_email">

@@ -80,8 +80,45 @@ class Projects extends AdminController
                 if (!staff_can('create', 'projects')) {
                     access_denied('Projects');
                 }
+               
+                $task_tempates = $this->input->post('task_template');
+                $task_template_status = $data['status'];
+                unset($data['task_template']);
+
                 $id = $this->projects_model->add($data);
+
                 if ($id) {
+                    if(isset($task_tempates)){
+                        $tasks = [];
+                        foreach ($task_tempates as $key => $value) {
+                            $this->db->where('id', $value);
+                            $tasks[$key] = $this->db->get(db_prefix() . 'tasks_template')->row();
+                        }
+                       
+                        foreach ($tasks as $key => $task) {
+                            $task_data['name']          = $task->name;
+                            $task_data['description']   = $task->description;
+                            $task_data['priority']      = $task->priority;
+                            $task_data['dateadded']     = date('Y-m-d H:i:s');
+                            $task_data['startdate']     = date('Y-m-d H:i:s');
+                            $task_data['addedfrom']     = get_contact_user_id();
+                            $task_data['status']        = $task_template_status;
+                            $task_data['rel_id']        = $id;
+                            $task_data['rel_type']      = 'project';
+
+                            $this->db->insert(db_prefix() . 'tasks', $task_data);
+                            // $insert_id = $this->db->insert_id();
+                            
+                            // if($insert_id){
+                            //     $assignee_array = explode(',', $task->assigneed_ids);
+                            //     $assigneed_id_array = array_map('trim',$assignee_array);
+                            //     foreach ($assigneed_id_array as $key => $id) {
+                            //         $this->db->insert(db_prefix() . 'task_assigned', ['staffid' => $id, 'taskid' => $insert_id]);
+                            //     }
+                            // }
+                        }
+                    }
+
                     set_alert('success', _l('added_successfully', _l('project')));
                     redirect(admin_url('projects/view/' . $id));
                 }
@@ -104,6 +141,7 @@ class Projects extends AdminController
                 $this->load->model('estimates_model');
                 $data['estimate'] = $this->estimates_model->get($this->input->get('via_estimate_id'));
             }
+            $data['task_templates'] = $this->db->get(db_prefix() . 'tasks_template')->result_array();           
         } else {
             $data['project']                               = $this->projects_model->get($id);
             $data['project']->settings->available_features = unserialize($data['project']->settings->available_features);
@@ -227,6 +265,7 @@ class Projects extends AdminController
                 ['app-js', 'jquery-comments-js', 'frappe-gantt-js', 'circle-progress-js']
             );
 
+
             if ($group == 'project_overview') {
                 $data['members'] = $this->projects_model->get_project_members($id);
                 foreach ($data['members'] as $key => $member) {
@@ -341,7 +380,7 @@ class Projects extends AdminController
                 $data['tasks']                = $this->projects_model->get_tasks($id, 'status != ' . Tasks_model::STATUS_COMPLETE . ' AND billed=0');
                 $data['timesheets_staff_ids'] = $this->projects_model->get_distinct_tasks_timesheets_staff($id);
             }
-
+            
             // Discussions
             if ($this->input->get('discussion_id')) {
                 $data['discussion_user_profile_image_url'] = staff_profile_image_url(get_staff_user_id());
