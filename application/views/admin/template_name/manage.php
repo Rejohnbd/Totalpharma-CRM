@@ -8,7 +8,7 @@
                <div class="panel-body">
                 <div class="row _buttons">
                      <div class="col-md-8">
-                        <a href="#" onclick="new_template_name(<?php if($this->input->get('project_id')){ echo "'".admin_url('template_name/name?id='.$this->input->get('project_id'))."'";} ?>); return false;" class="btn btn-info pull-left new"><?php echo 'New Template Name'; ?></a>
+                        <a href="#" onclick="new_template_name(<?php if($this->input->get('project_id')){ echo "'".admin_url('task_template_name/name?id='.$this->input->get('project_id'))."'";} ?>); return false;" class="btn btn-info pull-left new"><?php echo 'New Template Name'; ?></a>
                      </div>
                      <div class="col-md-4">
                        
@@ -36,7 +36,7 @@
                                     <div class="row-options">
                                        <a href="#" onclick="edit_template_name(<?= $name['id'] ?>); return false">Edit </a>
                                        <span class="text-dark"> | </span>
-                                       <a href="<?= admin_url('template_name/delete_name/'. $name['id']) ?>" class="text-danger _delete task-delete">Delete </a>
+                                       <a href="<?= admin_url('task_template_name/delete_name/'. $name['id']) ?>" class="text-danger _delete task-delete">Delete </a>
                                     </div>
                                  </td>
                               </tr>
@@ -53,7 +53,7 @@
 <?php init_tail(); ?>
 <script>
    function new_template_name(url, timer_id) {
-    url = typeof (url) != 'undefined' ? url : admin_url + 'template_name/name';
+    url = typeof (url) != 'undefined' ? url : admin_url + 'task_template_name/name';
 
     var $leadModal = $('#lead-modal');
     if ($leadModal.is(':visible')) {
@@ -93,7 +93,7 @@
 }
 
 function edit_template_name(name_id) {
-    requestGet('template_name/name/' + name_id).done(function (response) {
+    requestGet('task_template_name/name/' + name_id).done(function (response) {
         $('#_task').html(response);
         $('#task-modal').modal('hide');
         $("body").find('#_task_modal').modal({

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Template_name_model extends App_Model
+class Task_template_name_model extends App_Model
 {
 
     public function __construct()

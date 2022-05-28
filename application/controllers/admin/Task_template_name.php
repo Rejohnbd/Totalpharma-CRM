@@ -1,12 +1,12 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Template_name extends AdminController
+class Task_template_name extends AdminController
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('template_name_model');
+        $this->load->model('task_template_name_model');
     }
 
     
@@ -19,7 +19,7 @@ class Template_name extends AdminController
     {
         $data['bodyclass']      = 'template-name';
         $data['title']          = 'Template Name';
-        $data['template_names'] = $this->template_name_model->get_template_name();
+        $data['template_names'] = $this->task_template_name_model->get_template_name();
         $this->load->view('admin/template_name/manage', $data);
     }
 
@@ -43,7 +43,7 @@ class Template_name extends AdminController
                 //     ]);
                 //     die;
                 // }
-                $id      = $this->template_name_model->add($data);
+                $id      = $this->task_template_name_model->add($data);
                 
                 $_id     = false;
                 $success = false;
@@ -68,7 +68,7 @@ class Template_name extends AdminController
                 //     ]);
                 //     die;
                 // }
-                $success = $this->template_name_model->update($data, $id);
+                $success = $this->task_template_name_model->update($data, $id);
                 $message = '';
                 if ($success) {
                     $message = _l('updated_successfully', _l('new_task_temp'));
@@ -87,7 +87,7 @@ class Template_name extends AdminController
         if ($id == '') {
             $title = _l('add_new', 'template name');
         } else {
-            $data['task']  = $this->template_name_model->get($id);
+            $data['task']  = $this->task_template_name_model->get($id);
             $title = _l('edit', 'template name') . ' ' . $data['task']->template_name;
             // print_r();
             // die();
@@ -117,7 +117,7 @@ class Template_name extends AdminController
         // if (!has_permission('tasks', '', 'delete')) {
         //     access_denied('tasks');
         // }
-        $success = $this->template_name_model->delete_name($id);
+        $success = $this->task_template_name_model->delete_name($id);
         $message = _l('problem_deleting', 'Template Name');
         if ($success) {
             $message = _l('deleted', 'Template Name');

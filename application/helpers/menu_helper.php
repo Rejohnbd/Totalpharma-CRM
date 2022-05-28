@@ -169,7 +169,7 @@ function app_init_admin_sidebar_menu_items()
     $CI->app_menu->add_sidebar_children_item('tasks', [
         'slug'     => 'task-template',
         'name'     => 'Template Name',
-        'href'     => admin_url('template_name'),
+        'href'     => admin_url('task_template_name'),
         'position' => 6,
         'badge'    => [],
     ]);
