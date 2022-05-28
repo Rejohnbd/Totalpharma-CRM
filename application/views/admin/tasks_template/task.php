@@ -12,6 +12,18 @@
       <div class="modal-body">
          <div class="row">
             <div class="col-md-12">
+               <div class="row">
+                  <div class="col-md-12">
+                     <div class="form-group">
+                        <label for="templateName" class="control-label">Template Name</label>
+                        <select name="template_name_id" class="selectpicker" id="templateName" data-width="100%" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>">
+                           <?php foreach($templateNames as $template_name) { ?>
+                           <option value="<?php echo $template_name['id']; ?>"<?php if(isset($task) && $task->template_name_id == $template_name['id']){echo ' selected';} ?>><?php echo $template_name['template_name']; ?></option>
+                           <?php } ?>
+                        </select>
+                     </div>
+                  </div>
+               </div>
                <?php $value = (isset($task) ? $task->name : ''); ?>
                <?php echo render_input('name','task_add_edit_subject',$value); ?>
                <div class="row">

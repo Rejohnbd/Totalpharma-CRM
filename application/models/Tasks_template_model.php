@@ -142,5 +142,10 @@ class Tasks_template_model extends App_Model
     //     exit();
     //     return $tags;
     // }
+
+    public function get_template_name()
+    {
+        return $this->db->get(db_prefix() . 'task_template_names')->result_array();   
+    }
     
 }

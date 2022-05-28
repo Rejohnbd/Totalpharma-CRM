@@ -26,6 +26,12 @@ class Tasks_template extends AdminController
         $data['bodyclass']     = 'tasks-template-page';
         $data['title'] = _l('als_tasks_temp');
         $data['task_templates'] = $this->tasks_template_model->get_task_templates();
+        $templatesNameArray = $this->tasks_template_model->get_template_name();
+        $templates_name = [];
+        foreach ($templatesNameArray as $key => $value) {
+            $templates_name[$value['id']] = $value['template_name'];
+        }
+        $data['templates_name'] = $templates_name;
         $data['staff'] =  $this->tasks_template_model->get_staff_info();
         $this->load->view('admin/tasks_template/manage', $data);
     }
@@ -92,6 +98,7 @@ class Tasks_template extends AdminController
         }
 
         $data['checklistTemplates'] = $this->tasks_template_model->get_checklist_templates();
+        $data['templateNames']      = $this->tasks_template_model->get_template_name();
         
         if ($id == '') {
             $title = _l('add_new', _l('task_template_lowercase'));

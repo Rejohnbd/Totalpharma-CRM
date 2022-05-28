@@ -9,6 +9,7 @@
                 <div class="row _buttons">
                      <div class="col-md-8">
                         <a href="#" onclick="new_template_name(<?php if($this->input->get('project_id')){ echo "'".admin_url('task_template_name/name?id='.$this->input->get('project_id'))."'";} ?>); return false;" class="btn btn-info pull-left new"><?php echo 'New Template Name'; ?></a>
+                        <a href="<?= admin_url('tasks_template'); ?>" class="btn btn-info pull-left" style="margin-left: 10px "><?php echo _l('als_tasks_temp'); ?></a>
                      </div>
                      <div class="col-md-4">
                        

@@ -23,7 +23,8 @@
                           <thead>
                               <tr role="row">
                                   <th>#</th>
-                                  <th>Name</th>
+                                  <th>Template Name</th>
+                                  <th>Task Name</th>
                                   <th>Description</th>
                                   <th>tags</th>
                                   <th>Assigned</th>
@@ -34,6 +35,7 @@
                            <?php foreach ($task_templates as $key => $template) { ?>
                               <tr>
                                  <td><?= $key + 1; ?></td>
+                                 <td><?= $templates_name[$template['template_name_id']]; ?></td>
                                  <td>
                                      <a href="#" class="display-block" ><?= $template['name'] ?></a>
                                      <br/>
