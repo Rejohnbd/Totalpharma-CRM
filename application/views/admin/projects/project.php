@@ -209,16 +209,21 @@
                 </div>
                 <?php } ?>
                 <hr class="hr-panel-heading" />
-                <?php if(isset($task_templates)){?>
+                <?php 
+                    if(isset($project)){ 
+                        $task_template_name_ids = explode(',', $project->task_template_name_ids);
+                        $task_template_name_ids_array = array_map('trim',$task_template_name_ids);
+                    }
+                ?>
                 <p class="bold"><?= _l('als_tasks_temp') ?></p>
                 <div class="checkbox checkbox-success">
                     <?php foreach ($task_templates as $key => $value) { ?>
-                    <input type="checkbox" name="task_template[]" value="<?= $value['id']; ?>">
-                    <label><?= $value['name']; ?></label>
+                    <input type="checkbox" name="task_template[]" value="<?= $value['id'];?>" <?php if(isset($project)){ if(in_array($value['id'], $task_template_name_ids_array)) { echo 'checked'; } } ?>>
+                    <label><?= $value['template_name']; ?></label>
                     <br/>
                     <?php } ?>
                 </div>
-                <?php } ?>
+                
                 <hr class="hr-panel-heading" />
                 <?php if(is_email_template_active('assigned-to-project')){ ?>
                     <div class="checkbox checkbox-primary">
