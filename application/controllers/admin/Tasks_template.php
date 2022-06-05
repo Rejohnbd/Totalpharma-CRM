@@ -39,7 +39,6 @@ class Tasks_template extends AdminController
     // Add new task or update existing
     public function task($id = '')
     {
-      
         // if (!has_permission('tasks', '', 'edit') && !has_permission('tasks', '', 'create')) {
         //     ajax_access_denied();
         // }
@@ -49,6 +48,7 @@ class Tasks_template extends AdminController
             $data                = $this->input->post();
             $data['description'] = html_purify($this->input->post('description', false));
             if ($id == '') {
+                
                 // if (!has_permission('tasks', '', 'create')) {
                 //     header('HTTP/1.0 400 Bad error');
                 //     echo json_encode([
@@ -57,12 +57,36 @@ class Tasks_template extends AdminController
                 //     ]);
                 //     die;
                 // }
+
+                $task_template_checklist_items = [];
+                if (isset($data['checklist_description']) && isset($data['check_list_assignees'])) {
+                    foreach ($data['checklist_description'] as $key => $value) {
+                        $task_template_checklist_items[$key] = array(
+                            'description'   => $value,
+                            'assignee_id'   => $data['check_list_assignees'][$key]
+                        );
+                    }
+                    unset($data['checklist_description']);
+                    unset($data['check_list_assignees']);
+                }
+
                 $id      = $this->tasks_template_model->add($data);
                 
                 $_id     = false;
                 $success = false;
                 $message = '';
                 if ($id) {
+                    if(count($task_template_checklist_items) > 0){
+                        foreach ($task_template_checklist_items as $key => $value) {
+                            $saveData = array(
+                                'tasks_template_id' => $id,
+                                'description' => $value['description'],
+                                'assignee_id' => $value['assignee_id']
+                            );
+                            $this->db->insert(db_prefix() . 'tasks_template_checklist_items', $saveData);
+                        }
+                    }
+
                     $success       = true;
                     $_id           = $id;
                     $message       = _l('added_successfully', _l('new_task_temp'));
@@ -82,7 +106,36 @@ class Tasks_template extends AdminController
                 //     ]);
                 //     die;
                 // }
+
+                $task_template_checklist_items = [];
+                if (isset($data['checklist_description']) && isset($data['check_list_assignees'])) {
+                    foreach ($data['checklist_description'] as $key => $value) {
+                        $task_template_checklist_items[$key] = array(
+                            'description'   => $value,
+                            'assignee_id'   => $data['check_list_assignees'][$key]
+                        );
+                    }
+                    unset($data['checklist_description']);
+                    unset($data['check_list_assignees']);
+                }
+
                 $success = $this->tasks_template_model->update($data, $id);
+
+                $this->db->where('tasks_template_id', $id);
+                $this->db->delete(db_prefix() . 'tasks_template_checklist_items');
+
+                if(count($task_template_checklist_items) > 0){
+                    foreach ($task_template_checklist_items as $key => $value) {
+                        $saveData = array(
+                            'tasks_template_id' => $id,
+                            'description' => $value['description'],
+                            'assignee_id' => $value['assignee_id']
+                        );
+                        $this->db->insert(db_prefix() . 'tasks_template_checklist_items', $saveData);
+                    }
+                }
+
+
                 $message = '';
                 if ($success) {
                     $message = _l('updated_successfully', _l('new_task_temp'));
@@ -104,6 +157,8 @@ class Tasks_template extends AdminController
             $title = _l('add_new', _l('task_template_lowercase'));
         } else {
             $data['task'] = $this->tasks_template_model->get($id);
+            $this->db->where('tasks_template_id', $id);
+            $data['template_items'] = $this->db->get(db_prefix() . 'tasks_template_checklist_items')->result_array();
             $title = _l('edit', _l('task_template_lowercase')) . ' ' . $data['task']->name;
             // print_r();
             // die();
@@ -137,6 +192,8 @@ class Tasks_template extends AdminController
         $success = $this->tasks_template_model->delete_task($id);
         $message = _l('problem_deleting', _l('task_template_lowercase'));
         if ($success) {
+            $this->db->where('tasks_template_id', $id);
+            $this->db->delete(db_prefix() . 'tasks_template_checklist_items');
             $message = _l('deleted', _l('new_task_temp'));
             set_alert('success', $message);
         } else {

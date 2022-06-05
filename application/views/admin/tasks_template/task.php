@@ -71,6 +71,44 @@
                      <?php } ?>
                   </select>
                </div>
+
+               <a href="javascript:void(0)" class="copy-checkliskt mbot10 inline-block">
+               <span class="new-checklist-item"><i class="fa fa-plus-circle"></i>
+               <?php echo _l('add_checklist_item'); ?>
+               </span>
+               </a>
+
+               <?php
+                  if(isset($template_items)){
+                     foreach ($template_items as $key => $value) {
+               ?>
+                  <div class="checklist">
+                     <div class="row">
+                        <div class="col-md-7">
+                           <textarea class="form-control" name="checklist_description[]" rows="2"><?= $value['description']; ?></textarea>
+                        </div>
+                        <div class="col-md-4">
+                           <div class="form-group">
+                              <select name="check_list_assignees[]" class="form-control">
+                                 <?php foreach($members as $member){ ?>
+                                 <option value="<?php echo $member['staffid']; ?>" <?php if($member['staffid'] == $value['assignee_id']){ echo 'selected'; } ?>><?php echo $member['firstname'] . ' ' .  $member['lastname']; ?></option>
+                                 <?php } ?>
+                              </select>
+                           </div>
+                        </div>
+                        <div class="col-md-1">
+                           <a href="javascript:void(0)" class="pull-right text-muted remove-checklist"><i class="fa fa-remove"></i></a>   
+                        </div>
+                     </div>
+                  </div>
+               <?php
+                     }
+                  }
+               ?>
+               <div id="checklist-wrapper">
+               </div>
+
+               <br/>
                <div class="form-group">
                   <div id="inputTagsWrapper">
                      <label for="tags" class="control-label"><i class="fa fa-tag" aria-hidden="true"></i></label>
@@ -94,6 +132,8 @@
    </div>
 </div>
 <?php echo form_close(); ?>
+
+
 
 <script>
    $(function(){
@@ -150,4 +190,39 @@
 
     return false;
 }
+
+// Added by Rejohn
+$(document).ready(function(){
+   $('#checklist-wrapper').empty();
+
+   $(document).on('click', '.copy-checkliskt', function(){
+      console.log('click')
+      $('#checklist-wrapper').append(`
+         <div class="checklist">
+            <div class="row">
+               <div class="col-md-7">
+                  <textarea class="form-control" name="checklist_description[]" rows="2"></textarea>
+               </div>
+               <div class="col-md-4">
+                  <div class="form-group">
+                     <select name="check_list_assignees[]" class="form-control">
+                        <?php foreach($members as $member){ ?>
+                        <option value="<?php echo $member['staffid']; ?>"><?php echo $member['firstname'] . ' ' .  $member['lastname']; ?></option>
+                        <?php } ?>
+                     </select>
+                  </div>
+               </div>
+               <div class="col-md-1">
+                  <a href="#" class="pull-right text-muted remove-checklist"><i class="fa fa-remove"></i></a>   
+               </div>
+            </div>
+         </div>
+      `);
+   });
+
+   $(document).on('click', '.remove-checklist', function(){
+      $(this).closest('.checklist').remove();
+   });
+});
+
 </script>
