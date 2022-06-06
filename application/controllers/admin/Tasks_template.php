@@ -135,7 +135,6 @@ class Tasks_template extends AdminController
                     }
                 }
 
-
                 $message = '';
                 if ($success) {
                     $message = _l('updated_successfully', _l('new_task_temp'));

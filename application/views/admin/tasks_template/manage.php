@@ -140,6 +140,8 @@
     })
 }
 
+let countChecklist = 0;
+
 function edit_task_template(task_id) {
     requestGet('tasks_template/task/' + task_id).done(function (response) {
         $('#_task').html(response);
@@ -150,6 +152,7 @@ function edit_task_template(task_id) {
         });
     });
 }
+
 
 </script>
 </body>

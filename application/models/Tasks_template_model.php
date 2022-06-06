@@ -109,11 +109,10 @@ class Tasks_template_model extends App_Model
         if ($affectedRows > 0) {
             // hooks()->do_action('after_update_task', $id);
             log_activity('Task Template Updated [ID:' . $id . ', Name: ' . $data['name'] . ']');
-
             return true;
         }
 
-        return false;
+        return true;
     }
     
     public function delete_task($id, $log_activity = true)
