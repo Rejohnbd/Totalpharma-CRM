@@ -8,8 +8,8 @@
                <div class="panel-body">
                 <div class="row _buttons">
                      <div class="col-md-8">
-                        <a href="#" onclick="new_template_name(<?php if($this->input->get('project_id')){ echo "'".admin_url('task_template_name/name?id='.$this->input->get('project_id'))."'";} ?>); return false;" class="btn btn-info pull-left new"><?php echo 'New Template Name'; ?></a>
-                        <a href="<?= admin_url('tasks_template'); ?>" class="btn btn-info pull-left" style="margin-left: 10px "><?php echo _l('als_tasks_temp'); ?></a>
+                        <a href="#" onclick="new_template_name(<?php if($this->input->get('project_id')){ echo "'".admin_url('task_template_name/name?id='.$this->input->get('project_id'))."'";} ?>); return false;" class="btn btn-info pull-left new"><?php echo 'Add New Template'; ?></a>
+                        <!-- <a href="<?= admin_url('tasks_template'); ?>" class="btn btn-info pull-left" style="margin-left: 10px "><?php echo _l('als_tasks_temp'); ?></a> -->
                      </div>
                      <div class="col-md-4">
                        
@@ -17,34 +17,38 @@
                   </div>
                   <hr class="hr-panel-heading hr-10" />
                   <div class="clearfix"></div>
-                  <div class="table-responsive">
-                      <table class="table">
-                          <thead>
-                              <tr role="row">
-                                  <th>#</th>
-                                  <th>Name</th>
-                                  <th>Action</th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                           <?php foreach ($template_names as $key => $name) { ?>
-                              <tr>
-                                 <td><?= $key + 1; ?></td>
-                                 <td>
-                                     <a href="#" class="display-block" ><?= $name['template_name'] ?></a>
-                                 </td>
-                                 <td>
-                                    <div class="row-options">
-                                       <a href="#" onclick="edit_template_name(<?= $name['id'] ?>); return false">Edit </a>
-                                       <span class="text-dark"> | </span>
-                                       <a href="<?= admin_url('task_template_name/delete_name/'. $name['id']) ?>" class="text-danger _delete task-delete">Delete </a>
-                                    </div>
-                                 </td>
-                              </tr>
-                           <?php } ?>
-                          </tbody>
-                      </table>
-                  </div>
+                 
+                      <div class="table-responsive">
+                          <table id="taskTemplateName" class="table ">
+                              <thead>
+                                  <tr role="row">
+                                      <th>#</th>
+                                      <th>Name</th>
+                                      <th>Action</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                               <?php foreach ($template_names as $key => $name) { ?>
+                                  <tr>
+                                     <td><?= $key + 1; ?></td>
+                                     <td>
+                                         <a href="#" class="display-block" ><?= $name['template_name'] ?></a>
+                                     </td>
+                                     <td>
+                                        <div class="row-options">
+                                           <a href="#" onclick="edit_template_name(<?= $name['id'] ?>); return false">Edit </a>
+                                           <span class="text-dark"> | </span>
+                                           <a href="<?= admin_url('tasks_template/tasks_template_by_name/'. $name['id']) ?>" class="text-success">Tasks </a>
+                                           <span class="text-dark"> | </span>
+                                           <a href="<?= admin_url('task_template_name/delete_name/'. $name['id']) ?>" class="text-danger _delete task-delete">Delete </a>
+                                        </div>
+                                     </td>
+                                  </tr>
+                               <?php } ?>
+                              </tbody>
+                          </table>
+                      </div>
+                
             </div>
          </div>
       </div>
@@ -103,6 +107,11 @@ function edit_template_name(name_id) {
         });
     });
 }
+
+$(document).ready(function(){
+    $('#taskTemplateName').DataTable();
+    $('#taskTemplateName_wrapper').removeClass('table-loading');
+});
 
 </script>
 </body>

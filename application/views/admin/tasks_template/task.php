@@ -18,8 +18,11 @@
                         <label for="templateName" class="control-label">Template Name</label>
                         <select name="template_name_id" class="selectpicker" id="templateName" data-width="100%" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>">
                            <?php foreach($templateNames as $template_name) { ?>
-                           <option value="<?php echo $template_name['id']; ?>"<?php if(isset($task) && $task->template_name_id == $template_name['id']){echo ' selected';} ?>><?php echo $template_name['template_name']; ?></option>
-                           <?php } ?>
+                              <?php if(isset($task)){ ?>
+                              <option value="<?php echo $template_name['id']; ?>"<?php if($task->template_name_id == $template_name['id']){echo ' selected';} ?>><?php echo $template_name['template_name']; ?></option>
+                              <?php } else { ?>
+                                 <option value="<?php echo $template_name['id']; ?>"<?php if($this->session->userdata('tastTemplateId') == $template_name['id']){echo ' selected';} ?>><?php echo $template_name['template_name']; ?></option>
+                              <?php }} ?>
                         </select>
                      </div>
                   </div>

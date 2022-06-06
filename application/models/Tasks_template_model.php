@@ -24,6 +24,12 @@ class Tasks_template_model extends App_Model
         return $this->db->get(db_prefix() . 'tasks_template')->result_array();
     }
 
+    public function get_task_templates_by_id($id)
+    {
+        $this->db->where('template_name_id', $id);
+        return $this->db->get(db_prefix() . 'tasks_template')->result_array();
+    }
+
     public function get_staff_info()
     {
         $staff = [];
