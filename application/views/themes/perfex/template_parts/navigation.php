@@ -15,7 +15,19 @@
       <div class="collapse navbar-collapse" id="theme-navbar-collapse">
          <ul class="nav navbar-nav navbar-right">
             <?php hooks()->do_action('customers_navigation_start'); ?>
+            <?php 
+            /**
+            * knowledge-base
+            * projects
+            * invoices
+            * contracts
+            * estimates
+            * proposals
+            * support
+            */
+            ?>
             <?php foreach($menu as $item_id => $item) { ?>
+               <?php if(in_array($item_id, ['knowledge-base', 'projects', 'contracts', 'proposals', 'support'])) { ?>
                <li class="customers-nav-item-<?php echo $item_id; ?>"
                   <?php echo _attributes_to_string(isset($item['li_attributes']) ? $item['li_attributes'] : []); ?>>
                   <a href="<?php echo $item['href']; ?>"
@@ -28,6 +40,7 @@
                      ?>
                   </a>
                </li>
+               <?php } ?>
             <?php } ?>
             <?php hooks()->do_action('customers_navigation_end'); ?>
             <?php if(is_client_logged_in()) { ?>

@@ -192,6 +192,15 @@ function appointly_register_menu_items()
             'position'        => 25,
             'icon'            => 'fa fa-wpforms',
         ]);
+
+         $CI->app_menu->add_sidebar_children_item(APPOINTLY_MODULE_NAME, [
+            'slug'            => 'appointly-link-menu-calendar',
+            'name'            => _l('als_calendar_submenu'),
+            'href'            => admin_url('utilities/calendar'),
+            // 'href_attributes' => 'target="_blank" rel="noopener noreferrer"',
+            'position'        => 26,
+            'icon'            => 'fa fa-calendar-check-o',
+        ]);
     }
 }
 
