@@ -198,7 +198,7 @@ function appointly_register_menu_items()
             'name'            => _l('als_calendar_submenu'),
             'href'            => admin_url('utilities/calendar'),
             // 'href_attributes' => 'target="_blank" rel="noopener noreferrer"',
-            'position'        => 26,
+            'position'        => 121,
             'icon'            => 'fa fa-calendar-check-o',
         ]);
     }

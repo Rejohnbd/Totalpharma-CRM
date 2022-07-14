@@ -8,7 +8,14 @@
             <div class="scroller scroller-right arrow-right"><i class="fa fa-angle-right"></i></div>
             <div class="horizontal-tabs">
                <ul class="nav nav-tabs nav-tabs-horizontal" role="tablist">
+                  <?php if((get_option('access_tickets_to_none_staff_members') == 1 && !is_staff_member()) || is_staff_member()){ ?>
                   <li role="presentation" class="active">
+                     <a href="#home_tab_tickets" onclick="init_table_tickets(true);" aria-controls="home_tab_tickets" role="tab" data-toggle="tab">
+                     <i class="fa fa-ticket menu-icon"></i> <?php echo _l('home_tickets'); ?>
+                     </a>
+                  </li>
+                  <?php } ?>
+                  <li role="presentation">
                      <a href="#home_tab_tasks" aria-controls="home_tab_tasks" role="tab" data-toggle="tab">
                         <i class="fa fa-tasks menu-icon"></i> <?php echo _l('home_my_tasks'); ?>
                      </a>
@@ -34,13 +41,6 @@
                         ?>
                      </a>
                   </li>
-                  <?php if((get_option('access_tickets_to_none_staff_members') == 1 && !is_staff_member()) || is_staff_member()){ ?>
-                  <li role="presentation">
-                     <a href="#home_tab_tickets" onclick="init_table_tickets(true);" aria-controls="home_tab_tickets" role="tab" data-toggle="tab">
-                     <i class="fa fa-ticket menu-icon"></i> <?php echo _l('home_tickets'); ?>
-                     </a>
-                  </li>
-                  <?php } ?>
                   <?php if(is_staff_member()){ ?>
                   <li role="presentation">
                      <a href="#home_announcements" onclick="init_table_announcements(true);" aria-controls="home_announcements" role="tab" data-toggle="tab">
@@ -60,9 +60,28 @@
                </ul>
                <hr class="hr-panel-heading hr-user-data-tabs" />
                <div class="tab-content">
-                  <div role="tabpanel" class="tab-pane active" id="home_tab_tasks">
+                  <?php if((get_option('access_tickets_to_none_staff_members') == 1 && !is_staff_member()) || is_staff_member()){ ?>
+                  <div role="tabpanel" class="tab-pane active" id="home_tab_tickets">
+                     <a href="<?php echo admin_url('tickets'); ?>" class="mbot20 inline-block full-width"><?php echo _l('home_widget_view_all'); ?></a>
+                     <p>Rejohn</p>
+                     <div class="clearfix"></div>
+                     <div class="_filters _hidden_inputs hidden tickets_filters">
+                        <?php
+                           // On home only show on hold, open and in progress
+                           echo form_hidden('ticket_status_1',true);
+                           echo form_hidden('ticket_status_2',true);
+                           echo form_hidden('ticket_status_4',true);
+                           ?>
+                     </div>
+                     <?php echo AdminTicketsTableStructure(); ?>
+                     <?php //$this->load->view('admin/tasks/_table'); ?>
+                  </div>
+                  <?php } ?>
+
+                  <div role="tabpanel" class="tab-pane" id="home_tab_tasks">
                      <a href="<?php echo admin_url('tasks/list_tasks'); ?>" class="mbot20 inline-block full-width"><?php echo _l('home_widget_view_all'); ?></a>
                      <div class="clearfix"></div>
+                     <p>Rejohn</p>
                      <div class="_hidden_inputs _filters _tasks_filters">
                         <?php
                            echo form_hidden('my_tasks',true);
@@ -77,21 +96,7 @@
                      </div>
                      <?php $this->load->view('admin/tasks/_table'); ?>
                   </div>
-                  <?php if((get_option('access_tickets_to_none_staff_members') == 1 && !is_staff_member()) || is_staff_member()){ ?>
-                  <div role="tabpanel" class="tab-pane" id="home_tab_tickets">
-                     <a href="<?php echo admin_url('tickets'); ?>" class="mbot20 inline-block full-width"><?php echo _l('home_widget_view_all'); ?></a>
-                     <div class="clearfix"></div>
-                     <div class="_filters _hidden_inputs hidden tickets_filters">
-                        <?php
-                           // On home only show on hold, open and in progress
-                           echo form_hidden('ticket_status_1',true);
-                           echo form_hidden('ticket_status_2',true);
-                           echo form_hidden('ticket_status_4',true);
-                           ?>
-                     </div>
-                     <?php echo AdminTicketsTableStructure(); ?>
-                  </div>
-                  <?php } ?>
+
                   <div role="tabpanel" class="tab-pane" id="home_my_projects">
                      <a href="<?php echo admin_url('projects'); ?>" class="mbot20 inline-block full-width"><?php echo _l('home_widget_view_all'); ?></a>
                      <div class="clearfix"></div>

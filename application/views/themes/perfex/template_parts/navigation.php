@@ -104,11 +104,13 @@
                                  </a>
                               </li>
                               <?php foreach($this->app->get_available_languages() as $user_lang) { ?>
+                                 <?php if(in_array($user_lang, ['english', 'dutch', 'french'])) {?>
                                  <li <?php if(get_contact_language() == $user_lang){echo 'class="active"';} ?>>
                                     <a href="<?php echo site_url('clients/change_language/'.$user_lang); ?>">
                                        <?php echo ucfirst($user_lang); ?>
                                     </a>
                                  </li>
+                                 <?php } ?>
                               <?php } ?>
                            </ul>
                         </li>

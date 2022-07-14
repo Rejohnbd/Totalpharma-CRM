@@ -373,13 +373,14 @@ class Utilities extends AdminController
         $data['title'] = _l('bulk_pdf_exporter');
         $this->load->view('admin/utilities/bulk_pdf_exporter', $data);
     }
+
+    /**
+     * This controller are modified.
+     * Modifed Method calendar()
+     * This method strat form line no 60
+     * In this method modified line no: 85, 86
+     * 
+    */
     
 }
 
-/**
- * This controller are modified.
- * Modifed Method calendar()
- * This method strat form line no 60
- * In this method modified line no: 85, 86
- * 
-* /
