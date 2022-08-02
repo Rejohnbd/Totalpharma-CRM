@@ -1702,4 +1702,26 @@ class Clients_model extends App_Model
 
         return $this->db->get(db_prefix() . 'contacts')->result_array();
     }
+
+    public function store_opening_hours($data, $id) 
+    {
+        $this->db->where('customer_id', $id);
+        $this->db->where('weekday_number', $data['weekday_number']);
+        $query = $this->db->get(db_prefix() . 'customer_opening_hours');
+        $this->db->reset_query();
+        if($query->num_rows() > 0){
+            $this->db->where('customer_id', $id);
+            $this->db->where('weekday_number', $data['weekday_number']);
+            $this->db->delete(db_prefix() . 'customer_opening_hours');
+            $this->db->insert(db_prefix() . 'customer_opening_hours', $data);
+        }else {
+            $this->db->insert(db_prefix() . 'customer_opening_hours', $data);
+        }
+    }
+
+    public function get_opening_hours($id)
+    {
+        $this->db->where('customer_id', $id);
+        return $this->db->get(db_prefix() . 'customer_opening_hours')->result_array();
+    }
 }

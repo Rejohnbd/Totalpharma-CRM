@@ -346,6 +346,14 @@ function app_init_customer_profile_tabs()
         'position' => 95,
         'badge'    => [],
     ]);
+
+    $CI->app_tabs->add_customer_profile_tab('openinghours', [
+        'name'     => 'Opening Hours',
+        'icon'     => 'fa fa-clock-o',
+        'view'     => 'admin/clients/groups/openinghours',
+        'position' => 195,
+        'badge'    => [],
+    ]);
 }
 
 /**

@@ -59,6 +59,7 @@ function _init_admin_assets()
     add_google_api_js_assets();
 
     $CI->app_scripts->add('common-js', 'assets/builds/common.js');
+    $CI->app_scripts->add('time-picker-js', 'assets/opening_hour_timepicker_co/jquery.timepicker.min.js');
 
     $CI->app_scripts->add(
         'app-js',

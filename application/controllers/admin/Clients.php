@@ -72,7 +72,7 @@ class Clients extends AdminController
 
     /* Edit client or add new client*/
     public function client($id = '')
-    {
+    {  
         if (!has_permission('customers', '', 'view')) {
             if ($id != '' && !is_customer_admin($id)) {
                 access_denied('customers');
@@ -92,7 +92,9 @@ class Clients extends AdminController
                     unset($data['save_and_add_contact']);
                     $save_and_add_contact = true;
                 }
+
                 $id = $this->clients_model->add($data);
+
                 if (!has_permission('customers', '', 'view')) {
                     $assign['customer_admins']   = [];
                     $assign['customer_admins'][] = get_staff_user_id();
@@ -112,7 +114,43 @@ class Clients extends AdminController
                         access_denied('customers');
                     }
                 }
-                $success = $this->clients_model->update($this->input->post(), $id);
+                if($this->input->post('form_type')){
+                    $closed             = $this->input->post('closed');
+                    $twentyfour_hours   = $this->input->post('twentyfour_hours');
+                    $second_time        = $this->input->post('second_time');
+                    $open_time1         = $this->input->post('open_time_1');
+                    $close_time1        = $this->input->post('close_time_1');
+                    $open_time2         = $this->input->post('open_time_2');
+                    $close_time2        = $this->input->post('close_time_2');
+
+                    for($i = 1; $i <= 7; $i++){
+                        $data = array();
+                        $data['customer_id']    = $id;
+                        $data['weekday_number'] = $i;
+
+                        if($closed[$i] == 1) {
+                            $data['is_holiday'] = 1;
+                        } else if($twentyfour_hours[$i] == 1) {
+                            $data['open_24_hours'] = 1;
+                        } else {
+                            $data['open_time1']     = $open_time1[$i];
+                            $data['close_time1']    = $close_time1[$i];
+
+                            if($second_time[$i] == 1){
+                                $data['open_time2']     = $open_time2[$i];
+                                $data['close_time2']    = $close_time2[$i];
+                            }
+                        }
+                        $data['created_at'] = date("Y-m-d H:i:s");
+                        $data['updated_at'] = date("Y-m-d H:i:s");
+                        
+                        $this->clients_model->store_opening_hours($data, $id);
+                    }
+                    redirect(admin_url('clients/client/' . $id .'?group=openinghours'));
+                }else {
+                    $success = $this->clients_model->update($this->input->post(), $id);
+                }
+
                 if ($success == true) {
                     set_alert('success', _l('updated_successfully', _l('client')));
                 }
@@ -199,6 +237,8 @@ class Clients extends AdminController
                         ],
                         ]);
                 }
+            } elseif($group == 'openinghours') {
+                $data['openinghours'] = $this->clients_model->get_opening_hours($id);
             }
 
             $data['staff'] = $this->staff_model->get('', ['active' => 1]);
