@@ -5,7 +5,7 @@
       <?php echo form_open($this->uri->uri_string(),array('class'=>'client-form','autocomplete'=>'off')); ?>
       <input type="hidden" name="form_type" value="opening_hours">
       <div class="additional"></div>
-      <div class="col-md-12">
+      <div class="col-md-12" style="padding: 0px">
          <div class="form-group">
             <div class="tableview">
       <?php 
@@ -23,8 +23,8 @@
                        <div class="hideondesktop"><strong>Closed</strong></div>
                    </td>
              
-                   <td class="td" style="width: 130px;">
-                       <div class="hideondesktop"><strong>Open 24 Hours</strong></div>
+                   <td class="td" style="width: 80px;">
+                       <div class="hideondesktop"><strong>24 Hours</strong></div>
                    </td>
                
                    <td class="td">
@@ -49,29 +49,37 @@
                         </span> closed
                      </div> 
                   </td>
-                  <td class="td" style="width: 130px;"> 
+                  <td class="td" style="width: 80px;"> 
                      <div class="checker">
                         <span>
                            <input type="checkbox" class="twentyfour_hours" id="checkbox24_<?= $i ?>" value="<?= $i ?>" <?= $value['open_24_hours'] == 1?'checked':'' ?> <?= $value['is_holiday'] == 1?'disabled':'' ?>>
                            <input type="hidden" name="twentyfour_hours[<?= $i ?>]" id="twentyfour_hours_<?= $i ?>" value="<?= $value['open_24_hours'] ?>">
-                        </span> open_24_hours
+                        </span> Open
                      </div> 
                   </td>
                   <td class="td"> 
-                     <div style="display: flex;">
+                     <div class="row">
+                        <div class="col-sm-6" style="padding: 0">
                          <input type="text" class="timepicker picker_<?= $i ?> picker1_<?= $i ?>" name="open_time_1[<?= $i ?>]" id="open_time_1_<?= $i ?>" maxlength="5" value="<?= $value['open_time1'] ?>" autocomplete="off" <?= ($value['open_24_hours'] != 1 && $value['is_holiday'] != 1)?'required':'' ?> <?= ($value['open_24_hours'] == 1 || $value['is_holiday'] == 1)?'disabled':'' ?> style="width: 100px; margin-right: 3px;">
+                        </div>
+                        <div class="col-sm-6" style="padding: 0">
                          <input type="text" class="timepicker picker_<?= $i ?> picker1_<?= $i ?>" name="close_time_1[<?= $i ?>]" id="close_time_1_<?= $i ?>" maxlength="5" value="<?= $value['close_time1'] ?>" autocomplete="off" <?= ($value['open_24_hours'] != 1 && $value['is_holiday'] != 1)?'required':'' ?> <?= ($value['open_24_hours'] == 1 || $value['is_holiday'] == 1)?'disabled':'' ?> style="width: 100px;">
+                        </div>
                      </div>
                   </td>
 
-                  <td class="td right">
-                      <div class="checker display: flex;">
+                  <td class="td ">
+                      <div class="row">
+                        <div class="col-sm-6" style="padding: 0">
                           <span>
                               <input type="checkbox" class="second_time" id="second_time_<?= $i ?>" value="<?= $i ?>" <?= $value['open_time2'] != ""?'checked':'' ?> <?= ($value['open_24_hours'] == 1 || $value['is_holiday'] == 1)?'disabled':'' ?>>
                               <input type="hidden" name="second_time[<?= $i ?>]" id="second_time_value_<?= $i ?>" value="0"/>
                           </span>
                           <input type="text" class="timepicker picker_<?= $i ?> picker2_<?= $i ?>" name="open_time_2[<?= $i ?>]" id="open_time_2_<?= $i ?>" maxlength="5" value="<?= $value['open_time2'] ?>" autocomplete="off" <?= $value['open_time2'] == ""?'disabled':'' ?> style="width: 100px;">
-                      <input type="text" class="timepicker picker_<?= $i ?> picker2_<?= $i ?>" name="close_time_2[<?= $i ?>]" id="close_time_2_<?= $i ?>" maxlength="5" value="<?= $value['close_time2'] ?>" autocomplete="off" <?= $value['open_time2'] == ""?'disabled':'' ?> style="width: 100px;">
+                        </div>
+                        <div class="col-sm-6" style="padding: 0">
+                          <input type="text" class="timepicker picker_<?= $i ?> picker2_<?= $i ?>" name="close_time_2[<?= $i ?>]" id="close_time_2_<?= $i ?>" maxlength="5" value="<?= $value['close_time2'] ?>" autocomplete="off" <?= $value['open_time2'] == ""?'disabled':'' ?> style="width: 100px;">
+                        </div>
                       </div>
                   </td>
                </tr>
@@ -86,7 +94,7 @@
       <?php echo form_open($this->uri->uri_string(),array('class'=>'client-form','autocomplete'=>'off')); ?>
          <input type="hidden" name="form_type" value="opening_hours">
          <div class="additional"></div>
-         <div class="col-md-12">
+         <div class="col-md-12" style="padding: 0px">
             <div class="form-group">
                 <div class="tableview">
                     <?php for($i=1;$i<=7;$i++){ ?> 
@@ -101,8 +109,8 @@
                                 <div class="hideondesktop"><strong>Closed</strong></div>
                             </td>
                       
-                            <td class="td" style="width: 130px;">
-                                <div class="hideondesktop"><strong>Open 24 Hours</strong></div>
+                            <td class="td" style="width: 80px;">
+                                <div class="hideondesktop"><strong>24 Hours</strong></div>
                             </td>
                         
                             <td class="td">
@@ -128,30 +136,39 @@
                                 </div> 
                             </td>
                       
-                            <td class="td" style="width: 130px;">
+                            <td class="td" style="width: 80px;">
                                 <div class="checker">
                                     <span>
                                         <input type="checkbox" class="twentyfour_hours" id="checkbox24_<?= $i ?>" value="<?= $i ?>">
                                         <input type="hidden" name="twentyfour_hours[<?= $i ?>]" id="twentyfour_hours_<?= $i ?>" value="0">
-                                    </span> Open 24 Hours
+                                    </span> Open
                                 </div> 
                             </td>
                         
                             <td class="td">
-                                <div style="display: flex;">
-                                 <input type="text" class="timepicker picker_<?= $i ?> picker1_<?= $i ?>" name="open_time_1[<?= $i ?>]" id="open_time_1_<?= $i ?>" maxlength="5" autocomplete="off" required style="width: 100px; margin-right: 3px;">
-                                 <input type="text" class="timepicker picker_<?= $i ?> picker1_<?= $i ?>" name="close_time_1[<?= $i ?>]" id="close_time_1_<?= $i ?>" maxlength="5" autocomplete="off" required style="width: 100px;">
+                                <div class="row">
+                                  <div class="col-sm-6" style="padding: 0">
+                                    <input type="text" class="timepicker picker_<?= $i ?> picker1_<?= $i ?>" name="open_time_1[<?= $i ?>]" id="open_time_1_<?= $i ?>" maxlength="5" autocomplete="off" required style="width: 100px; margin-right: 3px;">
+                                  </div>
+                                  <div class="col-sm-6" style="padding: 0">
+                                    <input type="text" class="timepicker picker_<?= $i ?> picker1_<?= $i ?>" name="close_time_1[<?= $i ?>]" id="close_time_1_<?= $i ?>" maxlength="5" autocomplete="off" required style="width: 100px;">
+                                  </div>
                                 </div>
                             </td>
                         
-                            <td class="td right">
-                                 <div class="checker display: flex;">
-                                    <span>
+                            <td class="td">
+                                 <div class="row">
+                                    <div class="col-sm-6" style="padding: 0">
+                                      <span>
                                         <input type="checkbox" class="second_time" id="second_time_<?= $i ?>" value="<?= $i ?>">
                                         <input type="hidden" name="second_time[<?= $i ?>]" id="second_time_value_<?= $i ?>" value="0"/>
-                                    </span> 
-                                    <input type="text" class="timepicker picker_<?= $i ?> picker2_<?= $i ?>" name="open_time_2[<?= $i ?>]" id="open_time_2_<?= $i ?>" maxlength="5" autocomplete="off" disabled="" style="width: 100px;">
-                                    <input type="text" class="timepicker picker_<?= $i ?> picker2_<?= $i ?>" name="close_time_2[<?= $i ?>]" id="close_time_2_<?= $i ?>" maxlength="5" autocomplete="off" disabled="" style="width: 100px;">
+                                      </span> 
+                                      <input type="text" class="timepicker picker_<?= $i ?> picker2_<?= $i ?>" name="open_time_2[<?= $i ?>]" id="open_time_2_<?= $i ?>" maxlength="5" autocomplete="off" disabled="" style="width: 100px;">
+                                    </div>
+                                    <div class="col-sm-6" style="padding: 0">
+                                      <input type="text" class="timepicker picker_<?= $i ?> picker2_<?= $i ?>" name="close_time_2[<?= $i ?>]" id="close_time_2_<?= $i ?>" maxlength="5" autocomplete="off" disabled="" style="width: 100px;">
+                                    </div>
+                                    
                                 </div>
                             </td>
                         </tr>
