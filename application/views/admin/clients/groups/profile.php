@@ -45,6 +45,26 @@
                </li>
                <?php hooks()->do_action('after_customer_admins_tab',$client); ?>
                <?php } ?>
+               <li role="presentation">
+                  <a href="#site_information" aria-controls="site_information" role="tab" data-toggle="tab">
+                  <?php echo ('Site Information'); ?>
+                  </a>
+               </li> 
+               <li role="presentation">
+                  <a href="#server_settings" aria-controls="server_settings" role="tab" data-toggle="tab">
+                  <?php echo ('Server Settings'); ?>
+                  </a>
+               </li>
+               <li role="presentation">
+                  <a href="#other_settings" aria-controls="other_settings" role="tab" data-toggle="tab">
+                  <?php echo ('Other Settings'); ?>
+                  </a>
+               </li>
+               <li role="presentation">
+                  <a href="#brand_checklist" aria-controls="brand_checklist" role="tab" data-toggle="tab">
+                  <?php echo ('Brand Checklist'); ?>
+                  </a>
+               </li>
             </ul>
          </div>
       </div>
@@ -254,6 +274,262 @@
             </div>
          </div>
          */ ?>
+         <!-- Add Side Information Tab  -->
+         <div role="tabpanel" class="tab-pane" id="site_information">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="form-group">
+                           <label class="control-label">Title Site</label>
+                           <input type="text" name="basfa[site][title]" class="form-control " />
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Colors</label>
+                            <textarea name="basfa[site][colors]" class="form-control" rows="6"></textarea>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Logo Information</label>
+                            <textarea name="basfa[site][logo_info]" class="form-control" rows="6"></textarea>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="control-label">Home Page/Menu Structure/Slides</label>
+                           <?php echo render_textarea('basfa[site][structure]','','',array(),array(),'','tinymce'); ?>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="control-label">Picture Information</label>
+                           <?php echo render_textarea('basfa[site][picture_info]','','',array(),array(),'','tinymce'); ?>
+                       </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="control-label">Other Pages/Information</label>
+                           <?php echo render_textarea('basfa[site][other_info]','','',array(),array(),'','tinymce'); ?>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="control-label">SEO keywords</label>
+                           <textarea name="basfa[site][seo_keywords]" class="form-control" rows="6"></textarea>
+                        </div>
+                        <div class="form-group">
+                           <label class="control-label">Upload Zip File (Images, logos etc)</label>
+                           <input type="file" name="basfa_files" class="form-control " />
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- Add erver Settings Tab  -->
+         <div role="tabpanel" class="tab-pane" id="server_settings">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="form-group">
+                           <label class="control-label">Domain Name(s)</label>
+                           <input type='text' class='form-control' name='basfa[server][domain_name]' />
+                        </div>
+                     </div>
+                     <div class="col-md-12">
+                        <div class="form-group">
+                           <label class="control-label"><input type='radio' name='basfa[server][domain_action]' value='transfer' /> Transfer</label>
+                           <label class="control-label"><input type='radio' name='basfa[server][domain_action]' value='register' /> Register</label>
+                           <label class="control-label"><input type='radio' name='basfa[server][domain_action]' value='transfercode' /> Transfercode</label>
+                           <label class="control-label"> <input type='text' class="form-control input-sm" disabled style="display:inline-block; margin-left:10px;" name='basfa[server][transfercode]' /></label>
+                        </div>
+                     </div>
+
+                     <div class="col-md-12">
+                        <div class="form-group">
+                           <label class="control-label">Brands to Exclude</label><br />
+                           <label class="control-label"><input type='checkbox' name='basfa[server][brands_exclude][]' value="Louis Widmer" /> Louis Widmer</label>
+                           <label class="control-label"><input type='checkbox' name='basfa[server][brands_exclude][]' value="Caudalie" /> Caudalie</label>
+                           <label class="control-label"><input type='checkbox' name='basfa[server][brands_exclude][]' value="Nuxe" /> Nuxe</label>
+                           <label class="control-label"><input type='checkbox' name='basfa[server][brands_exclude][]' value="Roger & Gallet" /> Roger & Gallet</label>
+
+                           <label class="control-label"><input type='checkbox' name='basfa[server][brands_exclude][]' value="Filorga" /> Filorga</label>
+                           <!--<label class="control-label"><input type='checkbox' name='basfa[server][brands_exclude][]' value="Galenic" /> Galenic</label>-->
+                           <label class="control-label"><input type='checkbox' name='basfa[server][brands_exclude][]' value="6D Sports" /> 6D Sports</label>
+                           <label class="control-label"><input type='checkbox' name='basfa[server][brands_exclude][]' value="Cent pur Cent" /> Cent pur Cent</label>
+
+                           <label class="control-label"><input type='checkbox' name='basfa[server][brands_exclude][]' value="Apivita" /> Apivita</label>
+                           <label class="control-label"><input type='checkbox' name='basfa[server][brands_exclude][]' value="Furterer" /> Furterer</label>
+                           <label class="control-label"><input type='checkbox' name='basfa[server][brands_exclude][]' value="Darphin" /> Darphin</label>
+                           <label class="control-label"><input type='checkbox' name='basfa[server][brands_exclude][]' value="T Leclerc" /> T Leclerc</label>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="control-label">Mails to install</label>
+                           <textarea name="basfa[server][mails_to_install]" class="form-control" rows="6"></textarea>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="control-label">Old email credentials</label>
+                           <textarea name="basfa[server][old_email_credentials]" class="form-control" rows="6"></textarea>
+                        </div>
+                     </div>
+                     <div class="col-md-12">
+                        <div class="form-group">
+                           <label class="control-label">Email system</label> <br />
+                           <label><input name="basfa[server][mail_system][]" type="checkbox" value="Outlook"/> Outlook</label>
+                           <label><input name="basfa[server][mail_system][]" type="checkbox" value="Windows Mail"/> Windows Mail</label>
+                           <label><input name="basfa[server][mail_system][]" type="checkbox" value="Thunderbird"/> Thunderbird</label>
+                           <label><input name="basfa[server][mail_system][]" type="checkbox" value="Gmail"/> Gmail</label>
+                           <label><input name="basfa[server][mail_system][]" type="checkbox" value="Other"/> Other</label>
+                       </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="control-label">Teamviewer ID</label>
+                           <input type='text' class='form-control' name='basfa[server][teamviewer_id]' />
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="control-label">Mollie API Key (Test)</label>
+                           <input type='text' class='form-control' name='basfa[server][mollie_api_test]' />
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="control-label">Mollie API Key (Live)</label>
+                           <input type='text' class='form-control' name='basfa[server][mollie_api_live]' />
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="control-label">bpost Account ID</label>
+                           <input type='text' class='form-control' name='basfa[server][bpost_account_id]' />
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="control-label">bpost Account Password</label>
+                           <input type='text' class='form-control' name='basfa[server][bpost_account_password]' />
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="control-label">bpost Secret Passphrase</label>
+                           <input type='text' class='form-control' name='basfa[server][bpost_secret_passphrase]' />
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- Add Other Settings Tab  -->
+         <div role="tabpanel" class="tab-pane" id="other_settings">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="row">
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="control-label">Other Comments</label>
+                           <?php echo render_textarea('basfa[other][comment]','','',array(),array(),'','tinymce'); ?>
+                        </div>
+                        <div class="form-group  file_upload_div">
+                           <label class="control-label">Upload Files</label>
+                           <div class="input-group">
+                              <input class="form-control" type="file" name="basfa[other][files][]" />
+                              <span class="input-group-btn">
+                                 <button id="add_file_uploader" style="width:40px;font-weight:bold;" class="btn btn-success">+</button>
+                              </span>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="panel panel-default">
+                           <div class="panel-heading">
+                             Services
+                           </div>
+                           <div class="panel-body">
+                              <div class="form-group">
+                                 <label class="control-label"><strong>Website</strong></label><br />
+                                 <label class="control-label"><input type='radio' name='basfa[site][package]' value="Proweb" /> Proweb</label>
+                                 <label class="control-label"><input type='radio' name='basfa[site][package]' value="PharmaReserve" /> PharmaReserve</label>
+                                 <label class="control-label"><input type='radio' name='basfa[site][package]' value="Online Master" /> Online Master</label>
+                              </div>
+
+                              <div class="form-group">
+                                 <label class="control-label"><strong>Checkout</strong></label> <br />
+                                 <label><input name="basfa[site][services][]" type="checkbox" value="Payment system"/> Online payment</label>
+                                 <label><input name="basfa[site][services][]" type="checkbox" value="Safes"/> Afhaalkluisjes (safes)</label>
+                                 <label><input name="basfa[site][services][]" type="checkbox" value="Home Delivery"/> Thuislevering (home delivery)</label>
+                                 <label><input name="basfa[site][services][]" type="checkbox" value="Robot"/> Buitenautomaat (vending machine)</label>
+                              </div>
+
+                              <div class="form-group">
+                                 <label class="control-label"><strong>PharmaChannel</strong></label> <br />
+                                 <label><input name="basfa[site][services][]" type="checkbox" value="PharmaBooking"/> PharmaBooking</label>
+                                 <label><input name="basfa[site][services][]" type="checkbox" value="PharmaChat"/> PharmaChat</label>
+                                 <label><input name="basfa[site][services][]" type="checkbox" value="App"/> ZorgExpert App</label>
+                              </div>
+                              <div class="form-group">
+                                 <label class="control-label"><strong>Others</strong></label> <br />
+                                 <label><input name="basfa[site][services][]" type="checkbox" value="Logo design"/> Logo design</label>
+                              </div>
+                           </div>
+                       </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- Add Brand Checklist Tab -->
+         <div role="tabpanel" class="tab-pane" id="brand_checklist">
+            <?php
+               $brands = array(
+                  array('COSMETICA / HUID / HAAR / LICHAAM', 'BABY EN MOEDER','VOEDINGSSUPPLEMENTEN','DIERGENEESMIDDELEN','FYTOTHERAPIE','HOMEOPATHIE'),
+                  array(
+                     array('Louis Widmer', 'Vichy', 'A Derma', 'Bioderma', 'Roc', 'Bodysol', 'NUXE', 'Eucerin', 'Uriage', 'Darphin', 'La Roche Posay', 'Apivita', 'La Roche Posay', 'Apivita', 'Caudalie', 'Avène', 'CentpurCent', 'René Furterer', 'T. Leclerc', 'Roger & Gallet'. 'Klorane', 'Lierac', 'Ducray', 'Filorga', 'Couleurs de Noir'),
+                     array('Mustela',  'MAM', 'Avent', 'Difrax', 'Bibi', 'Nutrilon', 'NAN', 'Widmer Baby','Uriage Bébé','Galenco','BIBS' ),
+                     array('IXX Pharma', 'Metagenics', 'Omnivit', 'Etixx', 'MorEPA (Minami)', 'XLS Medical', 'Nutrisan', 'Forté Pharma', '6D Sports' ),
+                     array('Frontline', 'Royal Canin', 'Hills', 'Drontal', 'Bolfo', 'Advantix','Advantage'),
+                     array('Puressentiel', 'Vitanza', 'Soria', 'Tilman', 'A. Vogel', 'Arkocaps', 'Phytosun', 'VSM'),
+                     array('Unda', 'Boiron', 'Heel', 'Bach Bloesems')
+                  )
+               );
+             ?>
+            <div class="row">
+               <div class="col-md-12">
+                  <?php 
+                     $bcats = $brands[0];
+                     $brands = $brands[1];
+                     for($i=0;$i<count($bcats);$i++){ 
+                  ?>
+                     <div class="panel panel-info">
+                        <div class="panel-heading"><?php echo $bcats[$i]; ?></div>
+                           <div class="panel-body">
+                              <?php for($j=0;$j<count($brands[$i]);$j++){ ?>
+                                 <label class="control-label"><input type='checkbox' name='basfa[brands_checklist][<?php echo $i; ?>][]' value="<?php echo $brands[$i][$j]; ?>" checked /> <?php echo $brands[$i][$j]; ?></label>
+                              <?php } ?>
+                              <div class="row">
+                                 <?php for($x=0;$x<4;$x++){ ?>
+                                    <div class="col-md-3">
+                                       <input type="text" class="form-control" name="basfa[brands_checklist][<?php echo $i; ?>][custom][]" value="" />
+                                    </div>
+                                 <?php } ?>
+                              </div>
+                           </div>
+                     </div>
+                  <?php } ?>
+               </div>
+            </div>
+         </div>
+
       </div>
    </div>
    <?php echo form_close(); ?>
