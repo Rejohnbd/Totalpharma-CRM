@@ -25,11 +25,14 @@
                   </a>
                </li>
                <?php } ?>
+               <?php
+               /*
                <li role="presentation">
                   <a href="#billing_and_shipping" aria-controls="billing_and_shipping" role="tab" data-toggle="tab">
                   <?php echo _l( 'billing_shipping'); ?>
                   </a>
-               </li>
+               </li> 
+               */ ?>
                <?php hooks()->do_action('after_customer_billing_and_shipping_tab', isset($client) ? $client : false); ?>
                <?php if(isset($client)){ ?>
                <li role="presentation">
@@ -189,6 +192,8 @@
             </table>
          </div>
          <?php } ?>
+         <?php
+         /*
          <div role="tabpanel" class="tab-pane" id="billing_and_shipping">
             <div class="row">
                <div class="col-md-12">
@@ -248,6 +253,7 @@
                </div>
             </div>
          </div>
+         */ ?>
       </div>
    </div>
    <?php echo form_close(); ?>
