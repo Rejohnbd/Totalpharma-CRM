@@ -237,6 +237,11 @@ class Clients_model extends App_Model
         $data = $this->check_zero_columns($data);
 
         $data = hooks()->apply_filters('before_client_updated', $data, $id);
+        
+        $basfa = $data['basfa'];
+        $basfa_enc = json_encode($basfa);
+        unset($data['basfa']);
+        $data['basfa'] = $basfa_enc;
 
         $this->db->where('userid', $id);
         $this->db->update(db_prefix() . 'clients', $data);

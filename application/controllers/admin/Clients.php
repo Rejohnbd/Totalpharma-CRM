@@ -297,7 +297,7 @@ class Clients extends AdminController
 
         $data['bodyclass'] = 'customer-profile dynamic-create-groups';
         $data['title']     = $title;
-
+        
         $this->load->view('admin/clients/client', $data);
     }
 
