@@ -49,6 +49,11 @@
                */ ?>
                <?php } ?>
                <li role="presentation">
+                  <a href="#credentials" aria-controls="credentials" role="tab" data-toggle="tab">
+                  <?php echo ('Credentials'); ?>
+                  </a>
+               </li>
+               <li role="presentation">
                   <a href="#pharmacy_information" aria-controls="pharmacy_information" role="tab" data-toggle="tab">
                   <?php echo ('Pharmacy Information'); ?>
                   </a>
@@ -289,6 +294,27 @@
          <?php 
           $basfa = json_decode($client->basfa,true);
          ?>
+         <!-- Add Credentials Tab -->
+         <div role="tabpanel" class="tab-pane" id="credentials">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="row">
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="control-label">Internally Credentials</label>
+                           <?php echo render_textarea('basfa[site][internally_credentials]','',isset($basfa['site']['internally_credentials']) ? $basfa['site']['internally_credentials'] : '',array(),array(),'','tinymce'); ?>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="control-label">Clients Credentials</label>
+                           <?php echo render_textarea('basfa[site][clients_credentials]','',isset($basfa['site']['clients_credentials']) ? $basfa['site']['clients_credentials'] : '',array(),array(),'','tinymce'); ?>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
          <!-- Add Pharmacy Information Tab -->
          <div role="tabpanel" class="tab-pane" id="pharmacy_information">
             <div class="row">
@@ -771,6 +797,32 @@
                               <div class="form-group">
                                  <label class="control-label"><strong>Others</strong></label> <br />
                                  <label><input name="basfa[site][services][]" type="checkbox" value="Logo design" <?php if(isset($basfa['site']['services'])){ if(in_array("Logo design",$basfa['site']['services'])){ echo "checked"; }} ?> /> Logo design</label>
+                              </div>
+                              <div class="form-group">
+                                 <label class="control-label"><strong>Software</strong></label> <br />
+                                 <label><input name="basfa[site][services][]" type="checkbox" value="Farmad" <?php if(isset($basfa['site']['services'])){ if(in_array("Farmad",$basfa['site']['services'])){ echo "checked"; }} ?> /> Farmad</label>
+                                 <label><input name="basfa[site][services][]" type="checkbox" value="Corilus" <?php if(isset($basfa['site']['services'])){ if(in_array("Corilus",$basfa['site']['services'])){ echo "checked"; }} ?> /> Corilus</label>
+                                 <label><input name="basfa[site][services][]" type="checkbox" value="Officinall" <?php if(isset($basfa['site']['services'])){ if(in_array("Officinall",$basfa['site']['services'])){ echo "checked"; }} ?> /> Officinall</label>
+                                 <label><input name="basfa[site][services][]" type="checkbox" value="Nextpharm" <?php if(isset($basfa['site']['services'])){ if(in_array("Nextpharm",$basfa['site']['services'])){ echo "checked"; }} ?> /> Nextpharm</label>
+                                 <label><input name="basfa[site][services][]" type="checkbox" value="Pharmagest" <?php if(isset($basfa['site']['services'])){ if(in_array("Pharmagest",$basfa['site']['services'])){ echo "checked"; }} ?> /> Pharmagest</label>
+                                 <label><input name="basfa[site][services][]" type="checkbox" value="Pharmony" <?php if(isset($basfa['site']['services'])){ if(in_array("Pharmony",$basfa['site']['services'])){ echo "checked"; }} ?> /> Pharmony</label>
+                              </div>
+                              <div class="form-group">
+                                 <label class="control-label"><strong>Wholesaler</strong></label> <br />
+                                 <label><input name="basfa[site][services][]" type="checkbox" value="Febelco" <?php if(isset($basfa['site']['services'])){ if(in_array("Febelco",$basfa['site']['services'])){ echo "checked"; }} ?> /> Febelco</label>
+                                 <label><input name="basfa[site][services][]" type="checkbox" value="PBB" <?php if(isset($basfa['site']['services'])){ if(in_array("PBB",$basfa['site']['services'])){ echo "checked"; }} ?> /> Pharma Belgium/Belmedis</label>
+                              </div>
+                              <div class="form-group">
+                                 <label class="control-label"><strong>Other Partners</strong></label> <br />
+                                 <label><input name="basfa[site][services][]" type="checkbox" value="Orthoshop" <?php if(isset($basfa['site']['services'])){ if(in_array("Orthoshop",$basfa['site']['services'])){ echo "checked"; }} ?> /> Orthoshop</label>
+                                 <label><input name="basfa[site][services][]" type="checkbox" value="Zorgpunt" <?php if(isset($basfa['site']['services'])){ if(in_array("Zorgpunt",$basfa['site']['services'])){ echo "checked"; }} ?> /> Zorgpunt</label>
+                                 <label><input name="basfa[site][services][]" type="checkbox" value="APB" <?php if(isset($basfa['site']['services'])){ if(in_array("APB",$basfa['site']['services'])){ echo "checked"; }} ?> /> APB</label>
+                                 <label><input name="basfa[site][services][]" type="checkbox" value="Lochting" <?php if(isset($basfa['site']['services'])){ if(in_array("Lochting",$basfa['site']['services'])){ echo "checked"; }} ?> /> Lochting</label>
+                                 <label><input name="basfa[site][services][]" type="checkbox" value="DigitalPharma" <?php if(isset($basfa['site']['services'])){ if(in_array("DigitalPharma",$basfa['site']['services'])){ echo "checked"; }} ?> /> Digital Pharma</label>
+                                 <label><input name="basfa[site][services][]" type="checkbox" value="SalvusHealth" <?php if(isset($basfa['site']['services'])){ if(in_array("SalvusHealth",$basfa['site']['services'])){ echo "checked"; }} ?> /> Salvus Health</label>
+                                 <label><input name="basfa[site][services][]" type="checkbox" value="BDRowa" <?php if(isset($basfa['site']['services'])){ if(in_array("BDRowa",$basfa['site']['services'])){ echo "checked"; }} ?> /> BD/Rowa</label>
+                                 <label><input name="basfa[site][services][]" type="checkbox" value="Meditech" <?php if(isset($basfa['site']['services'])){ if(in_array("Meditech",$basfa['site']['services'])){ echo "checked"; }} ?> /> Meditech</label>
+                                 <label><input name="basfa[site][services][]" type="checkbox" value="RedPharma" <?php if(isset($basfa['site']['services'])){ if(in_array("RedPharma",$basfa['site']['services'])){ echo "checked"; }} ?> /> Red Pharma</label>
                               </div>
                            </div>
                        </div>
