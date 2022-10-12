@@ -299,13 +299,13 @@
             <div class="row">
                <div class="col-md-12">
                   <div class="row">
-                     <div class="col-md-6">
+                     <div class="col-md-12">
                         <div class="form-group">
                            <label class="control-label">Internally Credentials</label>
-                           <?php echo render_textarea('basfa[site][internally_credentials]','',isset($basfa['site']['internally_credentials']) ? $basfa['site']['internally_credentials'] : '',array(),array(),'','tinymce'); ?>
+                           <?php echo render_textarea('basfa[site][internal_credentials]','',isset($basfa['site']['internal_credentials']) ? $basfa['site']['internal_credentials'] : '',array(),array(),'','tinymce'); ?>
                         </div>
                      </div>
-                     <div class="col-md-6">
+                     <div class="col-md-12">
                         <div class="form-group">
                            <label class="control-label">Clients Credentials</label>
                            <?php echo render_textarea('basfa[site][clients_credentials]','',isset($basfa['site']['clients_credentials']) ? $basfa['site']['clients_credentials'] : '',array(),array(),'','tinymce'); ?>

@@ -339,6 +339,16 @@
          <div class="col-md-12">
             <?php $value = (isset($lead) ? $lead->description : ''); ?>
             <?php echo render_textarea('description','lead_description',$value); ?>
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col-md-6">
+                   <label>APB</label>
+                   <input type='text' class='form-control'  placeholder="APB" />
+                </div>
+                <div class="col-md-6">
+                  <label>Vat Number</label>
+                   <input type='text' class='form-control'  placeholder="Vat Number" />
+                </div>
+            </div>
             <div class="row">
                <div class="col-md-12">
                   <?php if(!isset($lead)){ ?>
