@@ -35,6 +35,8 @@
                */ ?>
                <?php hooks()->do_action('after_customer_billing_and_shipping_tab', isset($client) ? $client : false); ?>
                <?php if(isset($client)){ ?>
+               <?php 
+               /*
                <li role="presentation">
                   <a href="#customer_admins" aria-controls="customer_admins" role="tab" data-toggle="tab">
                   <?php echo _l( 'customer_admins' ); ?>
@@ -44,6 +46,7 @@
                   </a>
                </li>
                <?php hooks()->do_action('after_customer_admins_tab',$client); ?>
+               */ ?>
                <?php } ?>
                <li role="presentation">
                   <a href="#pharmacy_information" aria-controls="pharmacy_information" role="tab" data-toggle="tab">
@@ -181,6 +184,8 @@
             </div>
          </div>
          <?php if(isset($client)){ ?>
+         <?php
+         /*
          <div role="tabpanel" class="tab-pane" id="customer_admins">
             <?php if (has_permission('customers', '', 'create') || has_permission('customers', '', 'edit')) { ?>
             <a href="#" data-toggle="modal" data-target="#customer_admins_assign" class="btn btn-info mbot30"><?php echo _l('assign_admin'); ?></a>
@@ -216,6 +221,7 @@
                </tbody>
             </table>
          </div>
+         */ ?>
          <?php } ?>
          <?php
          /*
