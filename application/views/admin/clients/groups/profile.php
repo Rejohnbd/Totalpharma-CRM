@@ -49,13 +49,13 @@
                */ ?>
                <?php } ?>
                <li role="presentation">
-                  <a href="#credentials" aria-controls="credentials" role="tab" data-toggle="tab">
-                  <?php echo ('Credentials'); ?>
+                  <a href="#pharmacy_information" aria-controls="pharmacy_information" role="tab" data-toggle="tab">
+                  <?php echo ('Pharmacy Information'); ?>
                   </a>
                </li>
                <li role="presentation">
-                  <a href="#pharmacy_information" aria-controls="pharmacy_information" role="tab" data-toggle="tab">
-                  <?php echo ('Pharmacy Information'); ?>
+                  <a href="#credentials" aria-controls="credentials" role="tab" data-toggle="tab">
+                  <?php echo ('Credentials'); ?>
                   </a>
                </li>
                <li role="presentation">
@@ -294,27 +294,6 @@
          <?php 
           $basfa = json_decode($client->basfa,true);
          ?>
-         <!-- Add Credentials Tab -->
-         <div role="tabpanel" class="tab-pane" id="credentials">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="row">
-                     <div class="col-md-12">
-                        <div class="form-group">
-                           <label class="control-label">Internally Credentials</label>
-                           <?php echo render_textarea('basfa[site][internal_credentials]','',isset($basfa['site']['internal_credentials']) ? $basfa['site']['internal_credentials'] : '',array(),array(),'','tinymce'); ?>
-                        </div>
-                     </div>
-                     <div class="col-md-12">
-                        <div class="form-group">
-                           <label class="control-label">Clients Credentials</label>
-                           <?php echo render_textarea('basfa[site][clients_credentials]','',isset($basfa['site']['clients_credentials']) ? $basfa['site']['clients_credentials'] : '',array(),array(),'','tinymce'); ?>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
          <!-- Add Pharmacy Information Tab -->
          <div role="tabpanel" class="tab-pane" id="pharmacy_information">
             <div class="row">
@@ -587,6 +566,27 @@
                            </div>
                         </div>
                      <?php } ?>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- Add Credentials Tab -->
+         <div role="tabpanel" class="tab-pane" id="credentials">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="form-group">
+                           <label class="control-label">Internally Credentials</label>
+                           <?php echo render_textarea('basfa[site][internal_credentials]','',isset($basfa['site']['internal_credentials']) ? $basfa['site']['internal_credentials'] : '',array(),array(),'','tinymce'); ?>
+                        </div>
+                     </div>
+                     <div class="col-md-12">
+                        <div class="form-group">
+                           <label class="control-label">Clients Credentials</label>
+                           <?php echo render_textarea('basfa[site][clients_credentials]','',isset($basfa['site']['clients_credentials']) ? $basfa['site']['clients_credentials'] : '',array(),array(),'','tinymce'); ?>
+                        </div>
+                     </div>
                   </div>
                </div>
             </div>
